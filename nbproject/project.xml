@@ -8,6 +8,7 @@
             <included-library dirs="200">file.reference.dom4j-2.0.2.jar</included-library>
             <included-library dirs="200">file.reference.primefaces-6.1.jar</included-library>
             <included-library dirs="100">reference.LIGHT-UTILS.dist</included-library>
+            <included-library dirs="200">file.reference.primefaces-6.1.jar-1</included-library>
             <source-roots>
                 <root id="src.dir" name="Пакеты исходных кодов"/>
             </source-roots>
