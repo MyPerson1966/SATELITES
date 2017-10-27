@@ -1,12 +1,14 @@
 package pns.kiam.entities.users;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import pns.kiam.entities.telescopes.Telescope;
@@ -35,13 +37,17 @@ public class User implements Serializable {
 
     private boolean isActive = true;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "telescope_id")
-    private Telescope userTelescope;
+    private List<Telescope> userTelescopeList = new ArrayList<>();
 
 //    @ManyToOne
 //    @NotNull
 //    private UserType userType;
+    public User() {
+	moment = System.currentTimeMillis();
+    }
+
     public Long getId() {
 	return id;
     }
@@ -86,12 +92,12 @@ public class User implements Serializable {
 	this.isActive = isActive;
     }
 
-    public Telescope getUserTelescope() {
-	return userTelescope;
+    public List<Telescope> getUserTelescopeList() {
+	return userTelescopeList;
     }
 
-    public void setUserTelescope(Telescope userTelescope) {
-	this.userTelescope = userTelescope;
+    public void setUserTelescopeList(List<Telescope> userTelescopeList) {
+	this.userTelescopeList = userTelescopeList;
     }
 
     @Override
@@ -116,7 +122,11 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-	return "pns.kiam.entities.users.Users[ id=" + id + " ]";
+	return "pns.kiam.entities.users.Users[ id=" + id + ""
+		+ " email =" + email + ""
+		+ " password=" + password + ""
+		+ " moment=" + moment
+		+ " ]";
     }
 
 }
