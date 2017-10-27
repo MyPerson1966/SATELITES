@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import pns.kiam.entities.telescopes.Telescope;
 
@@ -41,9 +43,10 @@ public class User implements Serializable {
     @JoinColumn(name = "telescope_id")
     private List<Telescope> userTelescopeList = new ArrayList<>();
 
-//    @ManyToOne
-//    @NotNull
-//    private UserType userType;
+    @ManyToOne
+    @NotNull
+    private UserType userType;
+
     public User() {
 	moment = System.currentTimeMillis();
     }
@@ -98,6 +101,14 @@ public class User implements Serializable {
 
     public void setUserTelescopeList(List<Telescope> userTelescopeList) {
 	this.userTelescopeList = userTelescopeList;
+    }
+
+    public UserType getUserType() {
+	return userType;
+    }
+
+    public void setUserType(UserType userType) {
+	this.userType = userType;
     }
 
     @Override
