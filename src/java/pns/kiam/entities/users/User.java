@@ -29,6 +29,7 @@ public class User implements Serializable {
 
     private String email = "";
 
+    private String login = "";
     private String password = "";
 
     @Size(max = 1054)
@@ -64,6 +65,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
 	this.email = email;
+    }
+
+    public String getLogin() {
+	return login;
+    }
+
+    public void setLogin(String login) {
+	this.login = login;
     }
 
     public String getPassword() {
@@ -134,6 +143,7 @@ public class User implements Serializable {
     public String toString() {
 	return "pns.kiam.entities.users.Users[ id=" + id + ""
 		+ " email =" + email + ""
+		+ " login =" + login + ""
 		+ " password=" + password + ""
 		+ " moment=" + moment
 		+ " ]";
