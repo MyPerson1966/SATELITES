@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 import pns.kiam.entities.telescopes.Telescope;
 
 /**
- *
  * @author PSEVO tochka
  */
 @Entity
