@@ -8,7 +8,9 @@ package pns.kiam.entities.users;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,11 +46,9 @@ public class UserType implements Serializable {
     @Transient
     private int binRightsLen = binRights.length();
 
-//    @Transient
-//    private boolean[] boolRights = new boolean[20];
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.REMOVE)
     @JoinTable(name = "users")
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "usertype_id")
     private List<User> userList = new ArrayList<>();
 
     public UserType() {
@@ -201,7 +201,8 @@ public class UserType implements Serializable {
 
     @Override
     public String toString() {
-	return "UserType[ id=" + id + ", name= " + name + ", rights=" + rights + " ]";
+	getBinRights();
+	return "UserType[ id=" + id + ", name= " + name + ", rights=" + rights + "  binRights " + binRights + " ]";
     }
 
 }

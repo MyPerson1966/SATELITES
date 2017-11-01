@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import pns.kiam.entities.telescopes.Telescope;
 
@@ -40,15 +39,26 @@ public class User implements Serializable {
     private boolean isActive = true;
 
     @OneToMany
-    @JoinColumn(name = "telescope_id")
+    @JoinColumn(name = "usertype_id")
     private List<Telescope> userTelescopeList = new ArrayList<>();
 
     @ManyToOne
-    @NotNull
+    @JoinColumn(name = "usertype_id")
     private UserType userType;
 
     public User() {
+	login = pns.utils.numbers.RInts.rndInt(10, 99)
+		+ pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false)
+		+ pns.utils.strings.RStrings.lastMoment();
+	password = pns.utils.strings.RStrings.rndLetterStringRNDLen(9, 14, 10, true, false);
+	isActive = true;
+	email = pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + "@";
+	email += "ex-" + pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + pns.utils.numbers.RInts.rndInt(10, 99) + ".";
+	email += pns.utils.strings.RStrings.rndLetterStringRNDLen(2, 3, 10, true, false);
+
 	moment = System.currentTimeMillis();
+	userType = new UserType();
+	userType.setName("Empty Rights");
     }
 
     public Long getId() {
@@ -141,7 +151,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-	return "pns.kiam.entities.users.Users[ id=" + id + ""
+	return "  User [ id=" + id + ""
 		+ " email =" + email + ""
 		+ " login =" + login + ""
 		+ " password=" + password + ""

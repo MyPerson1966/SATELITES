@@ -201,6 +201,18 @@ public class Telescope implements Serializable, Comparable {
 	this.telescopeMask = telescopeMask;
     }
 
+    public String getShortName() {
+	String res = name;
+	if (res.length() > 10) {
+	    res = name.substring(0, 10).trim();
+	    if (name.trim().length() == res.length()) {
+		return res;
+	    }
+	    return res + "  . . . ";
+	}
+	return res;
+    }
+
     @Override
     public boolean equals(Object object) {
 	// TODO: Warning - this method won't work in the case the id fields are not set
