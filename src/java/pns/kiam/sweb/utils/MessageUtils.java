@@ -21,8 +21,8 @@ public class MessageUtils {
      * @param detailMSG
      */
     public void messageGenerator(String mainMSG, String detailMSG) {
-	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, mainMSG, detailMSG);
-	FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, mainMSG, detailMSG);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     /**
@@ -32,8 +32,8 @@ public class MessageUtils {
      * @param detailMSG
      */
     public void messageGeneratorError(String mainMSG, String detailMSG) {
-	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, mainMSG, detailMSG);
-	FacesContext.getCurrentInstance().addMessage(null, msg);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, mainMSG, detailMSG);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
 }
