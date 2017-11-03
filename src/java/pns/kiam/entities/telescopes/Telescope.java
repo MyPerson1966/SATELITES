@@ -83,180 +83,182 @@ public class Telescope implements Serializable, Comparable {
     private boolean selected = false;
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public boolean isSelected() {
-	return selected;
+        return selected;
     }
 
     public void setSelected(boolean selected) {
-	this.selected = selected;
+        this.selected = selected;
     }
 
     @Override
     public int hashCode() {
-	int hash = 0;
-	hash += (id != null ? id.hashCode() : 0);
-	return hash;
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     public double getX() {
-	return x;
+        return x;
     }
 
     public void setX(double x) {
-	this.x = x;
+        this.x = x;
     }
 
     public double getY() {
-	return y;
+        return y;
     }
 
     public void setY(double y) {
-	this.y = y;
+        this.y = y;
     }
 
     public double getZ() {
-	return z;
+        return z;
     }
 
     public void setZ(double z) {
-	this.z = z;
+        this.z = z;
     }
 
     public double getHeight() {
-	return height;
+        return height;
     }
 
     public void setHeight(double height) {
-	this.height = height;
+        this.height = height;
     }
 
     public double getLatitude() {
-	return latitude;
+        return latitude;
     }
 
     public void setLatitude(double latitude) {
-	this.latitude = latitude;
+        this.latitude = latitude;
     }
 
     public long getIdentifier() {
-	return identifier;
+        return identifier;
     }
 
     public void setIdentifier(long identifier) {
-	this.identifier = identifier;
+        this.identifier = identifier;
     }
 
     public String getLocation() {
-	return location;
+        return location;
     }
 
     public void setLocation(String location) {
-	this.location = location;
+        this.location = location;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getDescription() {
-	return description;
+        return description;
     }
 
     public void setDescription(String description) {
-	this.description = description;
+        this.description = description;
     }
 
     public String getComment() {
-	return comment;
+        return comment;
     }
 
     public void setComment(String comment) {
-	this.comment = comment;
+        this.comment = comment;
     }
 
     public double getLongitude() {
-	return longitude;
+        return longitude;
     }
 
     public void setLongitude(double longitude) {
-	this.longitude = longitude;
+        this.longitude = longitude;
     }
 
     public List<TelescopeHorizontMask> getTelescopeMask() {
-	return telescopeMask;
+        return telescopeMask;
     }
 
     public void setTelescopeMask(List<TelescopeHorizontMask> telescopeMask) {
-	this.telescopeMask = telescopeMask;
+        this.telescopeMask = telescopeMask;
     }
 
     public String getShortName() {
-	String res = name;
-	if (res.length() > 10) {
-	    res = name.substring(0, 10).trim();
-	    if (name.trim().length() == res.length()) {
-		return res;
-	    }
-	    return res + "  . . . ";
-	}
-	return res;
+        String res = name;
+        if (res.length() > 10) {
+            res = name.substring(0, 10).trim();
+            if (name.trim().length() == res.length()) {
+                return res;
+            }
+            return res + "  . . . ";
+        }
+        return res;
     }
 
     @Override
     public boolean equals(Object object) {
-	// TODO: Warning - this method won't work in the case the id fields are not set
-	if (!(object instanceof Telescope)) {
-	    return false;
-	}
-	Telescope other = (Telescope) object;
-	if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-	    return false;
-	}
-	return true;
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Telescope)) {
+            return false;
+        }
+        Telescope other = (Telescope) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-	return " Telesope{"
-		+ "  id=" + id
-		+ ", identifier=" + identifier
-		+ ", location=" + location + ", name=" + name
-		+ ", x=" + x
-		+ ", y=" + y
-		+ ", z=" + z
-		+ ", height=" + height
-		+ ", latitude=" + latitude + ", description=" + description
-		+ ", comment=" + comment + ", longitude=" + longitude
-		+ ", telescopeMaskSize=" + telescopeMask.size() + '}';
+        return " Telesope{"
+                + "  id=" + id
+                + ", identifier=" + identifier
+                + ", location=" + location + ", name=" + name
+                + ", x=" + x
+                + ", y=" + y
+                + ", z=" + z
+                + ", height=" + height
+                + ", latitude=" + latitude
+                + ", longitude=" + longitude
+                + ", description=" + description
+                + ", comment=" + comment
+                + ", telescopeMaskSize=" + telescopeMask.size() + "}";
     }
 
     @Override
     public int compareTo(Object o) {
 
-	if (!(o instanceof Telescope)) {
-	    return -1;
-	}
-	Telescope tmp = (Telescope) o;
-	if (this.identifier < tmp.identifier) {
-	    /* текущее меньше полученного */
-	    return -1;
-	} else if (this.identifier > tmp.identifier) {
-	    /* текущее больше полученного */
-	    return 1;
-	}
-	/* текущее равно полученному */
-	return 0;
+        if (!(o instanceof Telescope)) {
+            return -1;
+        }
+        Telescope tmp = (Telescope) o;
+        if (this.identifier < tmp.identifier) {
+            /* текущее меньше полученного */
+            return -1;
+        } else if (this.identifier > tmp.identifier) {
+            /* текущее больше полученного */
+            return 1;
+        }
+        /* текущее равно полученному */
+        return 0;
 
     }
 
