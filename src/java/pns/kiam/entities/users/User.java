@@ -53,7 +53,7 @@ public class User implements Serializable {
         password = pns.utils.strings.RStrings.rndLetterStringRNDLen(9, 14, 10, true, false);
         isActive = true;
         email = pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + "@";
-        email += "ex-" + pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + pns.utils.numbers.RInts.rndInt(10, 99) + ".";
+        email += "ex-" + pns.utils.strings.RStrings.rndLetterStringRNDLen(2, 3, 10, true, false) + pns.utils.numbers.RInts.rndInt(10, 99) + ".";
         email += pns.utils.strings.RStrings.rndLetterStringRNDLen(2, 3, 10, true, false);
 
         moment = System.currentTimeMillis();
