@@ -24,8 +24,8 @@ import javax.validation.constraints.Min;
  */
 @Entity
 @Table(name = "TelescopeMasks",
-	uniqueConstraints = {
-	    @UniqueConstraint(columnNames = {"horizont", "angle", "telescope_id"})}
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = {"horizont", "angle", "telescope_id"})}
 )
 public class TelescopeHorizontMask implements Serializable, Comparable {
 
@@ -50,90 +50,89 @@ public class TelescopeHorizontMask implements Serializable, Comparable {
     private int tmpId;
 
     public TelescopeHorizontMask() {
-	tmpId = (int) (1000 * Math.random());
+        tmpId = (int) (1000 * Math.random());
     }
 
     public int getTmpId() {
-	return tmpId;
+        return tmpId;
     }
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public double getAngle() {
-	return angle;
+        return angle;
     }
 
     public void setAngle(double angle) {
-	this.angle = angle;
+        this.angle = angle;
     }
 
     public double getHorizont() {
-	return horizont;
+        return horizont;
     }
 
     public void setHorizont(double horizont) {
-	this.horizont = horizont;
+        this.horizont = horizont;
     }
 
     public Telescope getTelescope() {
-	return telescope;
+        return telescope;
     }
 
     public void setTelescope(Telescope telescope) {
-	this.telescope = telescope;
+        this.telescope = telescope;
     }
 
     @Override
     public int hashCode() {
-	int hash = 0;
-	hash += (id != null ? id.hashCode() : 0);
-	return hash;
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-	// TODO: Warning - this method won't work in the case the id fields are not set
-	System.out.println("Test of equal mask: ");
-	if (!(object instanceof TelescopeHorizontMask)) {
-	    return false;
-	}
-	TelescopeHorizontMask other = (TelescopeHorizontMask) object;
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        //System.out.println("Test of equal mask: ");
+        if (!(object instanceof TelescopeHorizontMask)) {
+            return false;
+        }
+        TelescopeHorizontMask other = (TelescopeHorizontMask) object;
 
-	System.out.println(" this" + this.id + " " + this.toString() + "      " + " this" + other.id + " " + other.toString());
-
+        //System.out.println(" this" + this.id + " " + this.toString() + "      " + " this" + other.id + " " + other.toString());
 //        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
 //            return false;
 //        }
-	if (this.id == null || other.id == null) {
-	    return false;
-	}
+        if (this.id == null || other.id == null) {
+            return false;
+        }
 
-	return this.id == other.id;
+        return this.id == other.id;
     }
 
     @Override
     public String toString() {
-	return "{" + horizont + "; " + angle + '}';
+        return "{" + horizont + "; " + angle + '}';
     }
 
     @Override
     public int compareTo(Object o) {
-	TelescopeHorizontMask tmp = (TelescopeHorizontMask) o;
-	if (this.id < tmp.id) {
-	    /* текущее меньше полученного */
-	    return -1;
-	} else if (this.id > tmp.id) {
-	    /* текущее больше полученного */
-	    return 1;
-	}
-	/* текущее равно полученному */
-	return 0;
+        TelescopeHorizontMask tmp = (TelescopeHorizontMask) o;
+        if (this.id < tmp.id) {
+            /* текущее меньше полученного */
+            return -1;
+        } else if (this.id > tmp.id) {
+            /* текущее больше полученного */
+            return 1;
+        }
+        /* текущее равно полученному */
+        return 0;
     }
 
 }
