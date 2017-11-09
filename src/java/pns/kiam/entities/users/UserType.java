@@ -52,28 +52,28 @@ public class UserType implements Serializable {
     private List<User> userList = new ArrayList<>();
 
     public UserType() {
-	rights = 0;
+        rights = 0;
     }
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public int getRights() {
 
-	return rights;
+        return rights;
     }
 
     /**
@@ -84,19 +84,17 @@ public class UserType implements Serializable {
      * @param pos
      */
     public void changeBit(int pos) {
-	System.out.println("   " + binRights + "  " + binRightsLen + "   >> " + pos);
-	pos = binRightsLen - pos;
-	StringBuilder stb = new StringBuilder(binRights);
-	if (binRights.charAt(pos) == '1') {
-	    stb.setCharAt(pos, '0');
-	} else {
-	    stb.setCharAt(pos, '1');
-	}
-	binRights = stb.toString();
+        System.out.println("   " + binRights + "  " + binRightsLen + "   >> " + pos);
+        pos = binRightsLen - pos;
+        StringBuilder stb = new StringBuilder(binRights);
+        if (binRights.charAt(pos) == '1') {
+            stb.setCharAt(pos, '0');
+        } else {
+            stb.setCharAt(pos, '1');
+        }
+        binRights = stb.toString();
 
-	System.out.println("    binRights " + stb.toString() + "    pos " + pos);
-	System.out.println("    stb " + binRights + "    pos " + pos + "      charAt(pos) " + binRights.charAt(pos));
-	rights = Integer.parseInt(binRights, 2);
+        rights = Integer.parseInt(binRights, 2);
 
     }
 
@@ -107,11 +105,11 @@ public class UserType implements Serializable {
      * @return
      */
     public String createCharByInt(char n) {
-	if (n == '0') {
-	    return "-";
-	} else {
-	    return "+";
-	}
+        if (n == '0') {
+            return "-";
+        } else {
+            return "+";
+        }
     }
 
     /**
@@ -121,39 +119,39 @@ public class UserType implements Serializable {
      * @return
      */
     public String bitName(int pos) {
-	pos = 1 + pos % 8;
-	if (pos == 1) {
-	    return "Read Files";
-	} else if (pos == 2) {
-	    return "Download Files";
-	} else if (pos == 3) {
-	    return "Upload Files";
-	} else if (pos == 4) {
-	    return "Edit Files";
-	} else if (pos == 5) {
-	    return "Remove Files";
-	} else if (pos == 6) {
-	    return "Read Tables";
-	} else if (pos == 7) {
-	    return "Edit Tables";
-	} else if (pos == 8) {
-	    return "Remove Records";
-	}
-	return "";
+        pos = 1 + pos % 8;
+        if (pos == 1) {
+            return "Read Files";
+        } else if (pos == 2) {
+            return "Download Files";
+        } else if (pos == 3) {
+            return "Upload Files";
+        } else if (pos == 4) {
+            return "Edit Files";
+        } else if (pos == 5) {
+            return "Remove Files";
+        } else if (pos == 6) {
+            return "Read Tables";
+        } else if (pos == 7) {
+            return "Edit Tables";
+        } else if (pos == 8) {
+            return "Remove Records";
+        }
+        return "";
     }
 
     public void setRights(int rights) {
-	this.rights = rights;
-	//getBinRightsLen();
+        this.rights = rights;
+        //getBinRightsLen();
     }
 
     public String getBinRights() {
-	getBinRightsLen();
-	return binRights;
+        getBinRightsLen();
+        return binRights;
     }
 
     public void setBinRights(String binRights) {
-	this.binRights = binRights;
+        this.binRights = binRights;
     }
 
     /**
@@ -163,46 +161,46 @@ public class UserType implements Serializable {
      * @return
      */
     public int getBinRightsLen() {
-	binRights = Integer.toBinaryString(rights);
-	while (binRights.length() < 10) {
-	    binRights = "0" + binRights;
-	}
-	binRightsLen = binRights.length();
-	return binRightsLen;
+        binRights = Integer.toBinaryString(rights);
+        while (binRights.length() < 10) {
+            binRights = "0" + binRights;
+        }
+        binRightsLen = binRights.length();
+        return binRightsLen;
     }
 
     public List<User> getUserList() {
-	return userList;
+        return userList;
     }
 
     public void setUserList(List<User> userList) {
-	this.userList = userList;
+        this.userList = userList;
     }
 
     @Override
     public int hashCode() {
-	int hash = 100;
-	hash += (id != null ? id.hashCode() : 0);
-	return hash;
+        int hash = 100;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-	// TODO: Warning - this method won't work in the case the id fields are not set
-	if (!(object instanceof UserType)) {
-	    return false;
-	}
-	UserType other = (UserType) object;
-	if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-	    return false;
-	}
-	return true;
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof UserType)) {
+            return false;
+        }
+        UserType other = (UserType) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-	getBinRights();
-	return "UserType[ id=" + id + ", name= " + name + ", rights=" + rights + "  binRights " + binRights + " ]";
+        getBinRights();
+        return "UserType[ id=" + id + ", name= " + name + ", rights=" + rights + "  binRights " + binRights + " ]";
     }
 
 }

@@ -3,11 +3,14 @@ package pns.kiam.entities.users;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,8 +41,11 @@ public class User implements Serializable {
 
     private boolean isActive = true;
 
-    @OneToMany
-    @JoinColumn(name = "usertype_id")
+    //@OneToMany
+    //@JoinColumn(name = "telescope_id")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.REMOVE)
+    @JoinTable(name = "Telescopes")
+    @JoinColumn(name = "user_id")
     private List<Telescope> userTelescopeList = new ArrayList<>();
 
     @ManyToOne
@@ -47,116 +53,116 @@ public class User implements Serializable {
     private UserType userType;
 
     public User() {
-	login = pns.utils.numbers.RInts.rndInt(10, 99)
-		+ pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false)
-		+ pns.utils.strings.RStrings.lastMoment();
-	password = pns.utils.strings.RStrings.rndLetterStringRNDLen(9, 14, 10, true, false);
-	isActive = true;
-	email = pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + "@";
-	email += "ex-" + pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + pns.utils.numbers.RInts.rndInt(10, 99) + ".";
-	email += pns.utils.strings.RStrings.rndLetterStringRNDLen(2, 3, 10, true, false);
+        login = pns.utils.numbers.RInts.rndInt(10, 99)
+                + pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false)
+                + pns.utils.strings.RStrings.lastMoment();
+        password = pns.utils.strings.RStrings.rndLetterStringRNDLen(9, 14, 10, true, false);
+        isActive = true;
+        email = pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + "@";
+        email += "ex-" + pns.utils.strings.RStrings.rndLetterStringRNDLen(3, 5, 10, true, false) + pns.utils.numbers.RInts.rndInt(10, 99) + ".";
+        email += pns.utils.strings.RStrings.rndLetterStringRNDLen(2, 3, 10, true, false);
 
-	moment = System.currentTimeMillis();
-	userType = new UserType();
-	userType.setName("Empty Rights");
+        moment = System.currentTimeMillis();
+        userType = new UserType();
+        userType.setName("Empty Rights");
     }
 
     public Long getId() {
-	return id;
+        return id;
     }
 
     public void setId(Long id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getEmail() {
-	return email;
+        return email;
     }
 
     public void setEmail(String email) {
-	this.email = email;
+        this.email = email;
     }
 
     public String getLogin() {
-	return login;
+        return login;
     }
 
     public void setLogin(String login) {
-	this.login = login;
+        this.login = login;
     }
 
     public String getPassword() {
-	return password;
+        return password;
     }
 
     public void setPassword(String password) {
-	this.password = password;
+        this.password = password;
     }
 
     public String getComment() {
-	return comment;
+        return comment;
     }
 
     public void setComment(String comment) {
-	this.comment = comment;
+        this.comment = comment;
     }
 
     public long getMoment() {
-	return moment;
+        return moment;
     }
 
     public boolean isIsActive() {
-	return isActive;
+        return isActive;
     }
 
     public void setIsActive(boolean isActive) {
-	this.isActive = isActive;
+        this.isActive = isActive;
     }
 
     public List<Telescope> getUserTelescopeList() {
-	return userTelescopeList;
+        return userTelescopeList;
     }
 
     public void setUserTelescopeList(List<Telescope> userTelescopeList) {
-	this.userTelescopeList = userTelescopeList;
+        this.userTelescopeList = userTelescopeList;
     }
 
     public UserType getUserType() {
-	return userType;
+        return userType;
     }
 
     public void setUserType(UserType userType) {
-	this.userType = userType;
+        this.userType = userType;
     }
 
     @Override
     public int hashCode() {
-	int hash = 0;
-	hash += (id != null ? id.hashCode() : 0);
-	return hash;
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-	// TODO: Warning - this method won't work in the case the id fields are not set
-	if (!(object instanceof User)) {
-	    return false;
-	}
-	User other = (User) object;
-	if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-	    return false;
-	}
-	return true;
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-	return "  User [ id=" + id + ""
-		+ " email =" + email + ""
-		+ " login =" + login + ""
-		+ " password=" + password + ""
-		+ " moment=" + moment
-		+ " ]";
+        return "  User [ id=" + id + ""
+                + " email =" + email + ""
+                + " login =" + login + ""
+                + " password=" + password + ""
+                + " moment=" + moment
+                + " ]";
     }
 
 }
