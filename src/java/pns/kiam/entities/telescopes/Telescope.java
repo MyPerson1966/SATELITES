@@ -25,6 +25,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import pns.kiam.entities.satelites.Satelite;
+import pns.kiam.entities.satelites.SateliteMeasurement;
 import pns.kiam.entities.users.User;
 
 /**
@@ -81,6 +83,10 @@ public class Telescope implements Serializable, Comparable {
     @OrderBy("horizont ASC ")
     private List<TelescopeHorizontMask> telescopeMask = new ArrayList<>();
 
+//    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+//    @JoinTable(name = "satelites_measurements")
+//    @JoinColumn(name = "satelite_id")
+//    private List<SateliteMeasurement> measurementList = new ArrayList<>();
     @Transient
     private boolean selected = false;
 
