@@ -43,6 +43,13 @@ public class NumberUtils {
         return res;
     }
 
+    /**
+     * Take
+     *
+     * @param base
+     * @param exclusionList
+     * @return
+     */
     public static double[] excludefromList(double[] base, List<Double> exclusionList) {
         List<Double> baseList = arrayToList(base);
         List<Double> resList = excludefromList(baseList, exclusionList);
