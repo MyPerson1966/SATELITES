@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pns.kiam.entities.satelites;
+package pns.kiam.entities.satellites;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "satelies_lib")
-public class Satelite implements Serializable {
+public class Satellite implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,7 +41,7 @@ public class Satelite implements Serializable {
 //    @JoinTable(name = "satelites_measurements")
 //    @JoinColumn(name = "satelite_id")
 //    private List<SateliteMeasurement> measurementList = new ArrayList<>();
-    public Satelite() {
+    public Satellite() {
         moment = System.currentTimeMillis();
     }
 
@@ -105,10 +105,10 @@ public class Satelite implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Satelite)) {
+        if (!(object instanceof Satellite)) {
             return false;
         }
-        Satelite other = (Satelite) object;
+        Satellite other = (Satellite) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

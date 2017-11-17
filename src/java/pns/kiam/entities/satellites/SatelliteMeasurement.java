@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pns.kiam.entities.satelites;
+package pns.kiam.entities.satellites;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import pns.kiam.entities.satelites.Satelite;
+import pns.kiam.entities.satellites.Satellite;
 import pns.kiam.entities.telescopes.Telescope;
 
 /**
@@ -25,7 +25,7 @@ import pns.kiam.entities.telescopes.Telescope;
  */
 @Entity
 @Table(name = "satelites_measurements")
-public class SateliteMeasurement implements Serializable, Comparable {
+public class SatelliteMeasurement implements Serializable, Comparable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,10 +48,10 @@ public class SateliteMeasurement implements Serializable, Comparable {
     /**
      * one measure on one sat and one telescope
      */
-    private Satelite satelite;
+    private Satellite satelite;
     private Telescope telescopeList;
 
-    public SateliteMeasurement() {
+    public SatelliteMeasurement() {
     }
 
     public Long getId() {
@@ -72,10 +72,10 @@ public class SateliteMeasurement implements Serializable, Comparable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SateliteMeasurement)) {
+        if (!(object instanceof SatelliteMeasurement)) {
             return false;
         }
-        SateliteMeasurement other = (SateliteMeasurement) object;
+        SatelliteMeasurement other = (SatelliteMeasurement) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

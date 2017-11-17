@@ -3,41 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pns.kiam.entities.observatories;
+package pns.kiam.entities.satellites;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import pns.kiam.entities.telescopes.Telescope;
 
 /**
  *
  * @author User
  */
 @Entity
-@Table(name = "observatories")
-public class Observatory implements Serializable {
+@Table(name = "File_measured")
+public class FileMeasured implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int iai_code = -1;
-    private String name = "";
+    private int year = 0;
+    private int month = 0;
+    private int date = 0;
+    private String content;
 
-    @OneToMany
-    @JoinTable(name = "observatories")
-    @JoinColumn(name = "telescope_id")
-    private List<Telescope> telescopeList = new ArrayList<>();
+    public FileMeasured(int y, int m, int d, String c) {
+        year = y;
+        month = m;
+        date = d;
+        content = c;
+    }
 
     public Long getId() {
         return id;
@@ -47,28 +45,36 @@ public class Observatory implements Serializable {
         this.id = id;
     }
 
-    public int getIai_code() {
-        return iai_code;
+    public int getYear() {
+        return year;
     }
 
-    public void setIai_code(int iai_code) {
-        this.iai_code = iai_code;
+    public void setYear(int year) {
+        this.year = year;
     }
 
-    public String getName() {
-        return name;
+    public int getMonth() {
+        return month;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public List<Telescope> getTelescopeList() {
-        return telescopeList;
+    public int getDate() {
+        return date;
     }
 
-    public void setTelescopeList(List<Telescope> telescopeList) {
-        this.telescopeList = telescopeList;
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
@@ -81,11 +87,14 @@ public class Observatory implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Observatory)) {
+        if (!(object instanceof FileMeasured)) {
             return false;
         }
-        Observatory other = (Observatory) object;
+        FileMeasured other = (FileMeasured) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        if ((this.content == null && other.content != null) || (this.content != null && !this.content.trim().equals(other.content.trim()))) {
             return false;
         }
         return true;
@@ -93,10 +102,7 @@ public class Observatory implements Serializable {
 
     @Override
     public String toString() {
-        return "Observatory{ id=" + id + ""
-                + ", iai_code=" + iai_code
-                + ", name=" + name
-                + " }";
+        return "FileMeasured[ id=" + id + " ]";
     }
 
 }
