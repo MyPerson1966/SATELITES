@@ -6,10 +6,12 @@
 package pns.kiam.entities.satellites;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -30,6 +32,8 @@ public class FileMeasured implements Serializable {
     private int month = 0;
     private int date = 0;
 
+    @Lob
+    @Column(columnDefinition = "text")
     @Size(max = 20480)
     private String content = "";
 
