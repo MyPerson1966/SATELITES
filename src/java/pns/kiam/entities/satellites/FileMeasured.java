@@ -6,11 +6,14 @@
 package pns.kiam.entities.satellites;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,13 +31,23 @@ public class FileMeasured implements Serializable {
     private int year = 0;
     private int month = 0;
     private int date = 0;
-    private String content;
 
-    public FileMeasured(int y, int m, int d, String c) {
+    @Lob
+    @Column(columnDefinition = "longtext")
+    private String content = "";
+    private String fileName = "";
+    private long uploadedMoment = 0;  // moment in local time
+
+    public FileMeasured() {
+    }
+
+    public FileMeasured(int y, int m, int d, String c, String f, long mm) {
         year = y;
         month = m;
         date = d;
         content = c;
+        fileName = f;
+        uploadedMoment = mm;
     }
 
     public Long getId() {
@@ -75,6 +88,22 @@ public class FileMeasured implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public long getUploadedMoment() {
+        return uploadedMoment;
+    }
+
+    public void setUploadedMoment(long uploadedMoment) {
+        this.uploadedMoment = uploadedMoment;
     }
 
     @Override
