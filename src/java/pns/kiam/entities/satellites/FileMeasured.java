@@ -6,6 +6,10 @@
 package pns.kiam.entities.satellites;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -99,6 +103,7 @@ public class FileMeasured implements Serializable {
     }
 
     public long getUploadedMoment() {
+        //return uploadMomentUTC();
         return uploadedMoment;
     }
 
