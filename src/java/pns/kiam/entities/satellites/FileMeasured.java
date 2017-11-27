@@ -115,6 +115,7 @@ public class FileMeasured implements Serializable {
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
+        hash += (int) content.length() * 256;
         return hash;
     }
 
@@ -125,9 +126,10 @@ public class FileMeasured implements Serializable {
             return false;
         }
         FileMeasured other = (FileMeasured) object;
-        if (this.fileName != null && other.fileName != null) {
-            return this.fileName.trim().equals(other.fileName.trim());
-        }
+
+//        if (this.fileName != null && other.fileName != null) {
+//            return this.fileName.trim().equals(other.fileName.trim());
+//        }
         if (this.content != null && other.content != null) {
             return this.content.trim().equals(other.content.trim());
         }
