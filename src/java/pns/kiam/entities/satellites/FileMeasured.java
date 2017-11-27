@@ -125,13 +125,13 @@ public class FileMeasured implements Serializable {
             return false;
         }
         FileMeasured other = (FileMeasured) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
+        if (this.fileName != null && other.fileName != null) {
+            return this.fileName.trim().equals(other.fileName.trim());
         }
-        if ((this.content == null && other.content != null) || (this.content != null && !this.content.trim().equals(other.content.trim()))) {
-            return false;
+        if (this.content != null && other.content != null) {
+            return this.content.trim().equals(other.content.trim());
         }
-        return true;
+        return false;
     }
 
     @Override
