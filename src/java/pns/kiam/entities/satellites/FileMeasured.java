@@ -16,7 +16,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 /**
@@ -29,7 +31,7 @@ public class FileMeasured implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     private int year = 0;
@@ -40,7 +42,7 @@ public class FileMeasured implements Serializable {
     @Column(columnDefinition = "longtext")
     private String content = "";
     private String fileName = "";
-    private long uploadedMoment = 0;  // moment in local time
+    private long uploadedMoment = 0;  // moment of uploading file in local time
 
     public FileMeasured() {
     }
@@ -126,19 +128,21 @@ public class FileMeasured implements Serializable {
             return false;
         }
         FileMeasured other = (FileMeasured) object;
-
+        boolean res = true;
 //        if (this.fileName != null && other.fileName != null) {
-//            return this.fileName.trim().equals(other.fileName.trim());
+//            res= this.fileName.trim().equals(other.fileName.trim());
 //        }
         if (this.content != null && other.content != null) {
-            return this.content.trim().equals(other.content.trim());
+            System.out.println("Content { " + fileName + ";" + other.fileName + "}");
+            res = res && this.content.trim().equals(other.content.trim());
         }
-        return false;
+
+        return res;
     }
 
     @Override
     public String toString() {
-        return "FileMeasured[ id=" + id + " ]";
+        return "FileMeasured[ id=" + id + " monthe=" + month + " date=" + date + " ]";
     }
 
 }
