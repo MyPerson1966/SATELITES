@@ -5,6 +5,9 @@
  */
 package pns.kiam.Utils;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -75,6 +78,24 @@ public class StringUtils {
             //Logger.getLogger(TestStringToDate.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public static String md5Maker(String s) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        s = pns.utils.strings.RStrings.removeSpaces(s);
+
+        byte[] hash = digest.digest(s.getBytes(StandardCharsets.UTF_8));
+        return hexStrVal(hash);
+    }
+
+    public static String hexStrVal(byte[] bts) {
+        StringBuffer sbf = new StringBuffer();
+
+        for (byte b : bts) {
+            long ti = b & 0xff;
+            sbf.append(Long.toHexString(ti));
+        }
+        return sbf.toString();
     }
 
     /**

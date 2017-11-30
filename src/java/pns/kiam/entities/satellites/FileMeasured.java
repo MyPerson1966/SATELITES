@@ -6,10 +6,14 @@
 package pns.kiam.entities.satellites;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.inject.Inject;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +22,10 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
+import pns.kiam.Utils.StringUtils;
 
 /**
  *
@@ -41,6 +47,9 @@ public class FileMeasured implements Serializable {
     @Lob
     @Column(columnDefinition = "longtext")
     private String content = "";
+    private String strHash = "";
+    @Column(unique = true)
+    private int intHash = 0;
     private String fileName = "";
     private long uploadedMoment = 0;  // moment of uploading file in local time
 
@@ -51,6 +60,13 @@ public class FileMeasured implements Serializable {
         year = y;
         month = m;
         date = d;
+
+        try {
+            strHash = StringUtils.md5Maker(c);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FileMeasured.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        intHash = strHash.hashCode();
         content = c;
         fileName = f;
         uploadedMoment = mm;
@@ -86,6 +102,14 @@ public class FileMeasured implements Serializable {
 
     public void setDate(int date) {
         this.date = date;
+    }
+
+    public String getStrHash() {
+        return strHash;
+    }
+
+    public int getIntHash() {
+        return intHash;
     }
 
     public String getContent() {
