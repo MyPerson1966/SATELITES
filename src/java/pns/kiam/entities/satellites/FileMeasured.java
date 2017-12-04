@@ -48,8 +48,10 @@ public class FileMeasured implements Serializable {
     @Column(columnDefinition = "longtext")
     private String content = "";
     private String strHash = "";
+    private String fileAttr = "";
+
     @Column(unique = true)
-    private int intHash = 0;
+    private long intHash = 0;
     private String fileName = "";
     private long uploadedMoment = 0;  // moment of uploading file in local time
 
@@ -62,11 +64,12 @@ public class FileMeasured implements Serializable {
         date = d;
 
         try {
-            strHash = StringUtils.md5Maker(c);
+            strHash = pns.utils.strings.RStrings.strToHash(c, "MD5");
+            strHash = pns.utils.numbers.RConverter.toHex(strHash.getBytes());
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(FileMeasured.class.getName()).log(Level.SEVERE, null, ex);
         }
-        intHash = strHash.hashCode();
+        intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
         content = c;
         fileName = f;
         uploadedMoment = mm;
@@ -108,7 +111,7 @@ public class FileMeasured implements Serializable {
         return strHash;
     }
 
-    public int getIntHash() {
+    public long getIntHash() {
         return intHash;
     }
 
