@@ -8,6 +8,7 @@
             <included-library dirs="200">file.reference.dom4j-2.0.2.jar</included-library>
             <included-library dirs="200">file.reference.primefaces-6.1.jar</included-library>
             <included-library dirs="100">reference.LIGHT-UTILS.dist</included-library>
+            <included-library dirs="200">reference.fileLibs.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Пакеты исходных кодов"/>
             </source-roots>
@@ -23,6 +24,14 @@
                 <target>dist</target>
                 <clean-target>clean</clean-target>
                 <id>dist</id>
+            </reference>
+            <reference>
+                <foreign-project>fileLibs</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
             </reference>
         </references>
     </configuration>

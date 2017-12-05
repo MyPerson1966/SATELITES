@@ -26,6 +26,7 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import pns.kiam.Utils.StringUtils;
+import pns.kiam.Utils.FormatClassificator;
 
 /**
  *
@@ -36,6 +37,9 @@ import pns.kiam.Utils.StringUtils;
 public class FileMeasured implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Transient
+    private FormatClassificator formatClassificator;
     @Id
     @GeneratedValue
     private Long id;
@@ -48,7 +52,7 @@ public class FileMeasured implements Serializable {
     @Column(columnDefinition = "longtext")
     private String content = "";
     private String strHash = "";
-    private String fileAttr = "";
+    private String fileType = "";
 
     @Column(unique = true)
     private long intHash = 0;
@@ -59,6 +63,7 @@ public class FileMeasured implements Serializable {
     }
 
     public FileMeasured(int y, int m, int d, String c, String f, long mm) {
+        formatClassificator = new FormatClassificator();
         year = y;
         month = m;
         date = d;
@@ -71,6 +76,8 @@ public class FileMeasured implements Serializable {
         }
         intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
         content = c;
+        formatClassificator.classificate(c);
+        fileType = formatClassificator.getFormatType();
         fileName = f;
         uploadedMoment = mm;
     }
