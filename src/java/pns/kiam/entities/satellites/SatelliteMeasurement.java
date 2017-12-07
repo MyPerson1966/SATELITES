@@ -32,22 +32,24 @@ public class SatelliteMeasurement implements Serializable, Comparable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String fileAddress = "";
-
+    private long file_id = 0;
     private int ascent_H = 0;
     private int ascent_M = 0;
-    private int ascent_S = 0;
+    private double ascent_S = 0;
     private char mandatory;
     private int decline_H = 0;
     private int decline_M = 0;
-    private int decline_S = 0;
+    private double decline_S = 0;
     private double accuracy = 0;
     private double brightness = 0;
-
     private Long date;
 
     /**
      * one measure on one sat and one telescope
      */
+    private short telescopeID;
+    private short satID;
+
     private Satellite satelite;
     private Telescope telescopeList;
 
@@ -60,6 +62,134 @@ public class SatelliteMeasurement implements Serializable, Comparable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getFileAddress() {
+        return fileAddress;
+    }
+
+    public void setFileAddress(String fileAddress) {
+        this.fileAddress = fileAddress;
+    }
+
+    public int getAscent_H() {
+        return ascent_H;
+    }
+
+    public void setAscent_H(int ascent_H) {
+        this.ascent_H = ascent_H;
+    }
+
+    public int getAscent_M() {
+        return ascent_M;
+    }
+
+    public void setAscent_M(int ascent_M) {
+        this.ascent_M = ascent_M;
+    }
+
+    public double getAscent_S() {
+        return ascent_S;
+    }
+
+    public void setAscent_S(double ascent_S) {
+        this.ascent_S = ascent_S;
+    }
+
+    public char getMandatory() {
+        return mandatory;
+    }
+
+    public void setMandatory(char mandatory) {
+        this.mandatory = mandatory;
+    }
+
+    public int getDecline_H() {
+        return decline_H;
+    }
+
+    public void setDecline_H(int decline_H) {
+        this.decline_H = decline_H;
+    }
+
+    public int getDecline_M() {
+        return decline_M;
+    }
+
+    public void setDecline_M(int decline_M) {
+        this.decline_M = decline_M;
+    }
+
+    public double getDecline_S() {
+        return decline_S;
+    }
+
+    public void setDecline_S(double decline_S) {
+        this.decline_S = decline_S;
+    }
+
+    public double getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public double getBrightness() {
+        return brightness;
+    }
+
+    public void setBrightness(double brightness) {
+        this.brightness = brightness;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
+    }
+
+    public Satellite getSatelite() {
+        return satelite;
+    }
+
+    public void setSatelite(Satellite satelite) {
+        this.satelite = satelite;
+    }
+
+    public Telescope getTelescopeList() {
+        return telescopeList;
+    }
+
+    public void setTelescopeList(Telescope telescopeList) {
+        this.telescopeList = telescopeList;
+    }
+
+    public long getFile_id() {
+        return file_id;
+    }
+
+    public void setFile_id(long file_id) {
+        this.file_id = file_id;
+    }
+
+    public short getTelescopeID() {
+        return telescopeID;
+    }
+
+    public void setTelescopeID(short telescopeID) {
+        this.telescopeID = telescopeID;
+    }
+
+    public short getSatID() {
+        return satID;
+    }
+
+    public void setSatID(short satID) {
+        this.satID = satID;
     }
 
     @Override
@@ -84,7 +214,7 @@ public class SatelliteMeasurement implements Serializable, Comparable {
 
     @Override
     public String toString() {
-        return "pns.kiam.entities.oservatories.SateliteMeasurement[ id=" + id + " ]";
+        return "SatelliteMeasurement{" + "id=" + id + ", fileAddress=" + fileAddress + ", file_id=" + file_id + ", ascent_H=" + ascent_H + ", ascent_M=" + ascent_M + ", ascent_S=" + ascent_S + ", mandatory=" + mandatory + ", decline_H=" + decline_H + ", decline_M=" + decline_M + ", decline_S=" + decline_S + ", accuracy=" + accuracy + ", brightness=" + brightness + ", date=" + date + ", telescopeID=" + telescopeID + ", satID=" + satID + ", satelite=" + satelite + ", telescopeList=" + telescopeList + '}';
     }
 
     @Override
