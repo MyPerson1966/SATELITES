@@ -47,8 +47,8 @@ public class SatelliteMeasurement implements Serializable, Comparable {
     /**
      * one measure on one sat and one telescope
      */
-    private short telescopeID;
-    private short satID;
+    private int telescopeID;
+    private int satID;
 
     private Satellite satelite;
     private Telescope telescopeList;
@@ -176,19 +176,19 @@ public class SatelliteMeasurement implements Serializable, Comparable {
         this.file_id = file_id;
     }
 
-    public short getTelescopeID() {
+    public int getTelescopeID() {
         return telescopeID;
     }
 
-    public void setTelescopeID(short telescopeID) {
+    public void setTelescopeID(int telescopeID) {
         this.telescopeID = telescopeID;
     }
 
-    public short getSatID() {
+    public int getSatID() {
         return satID;
     }
 
-    public void setSatID(short satID) {
+    public void setSatID(int satID) {
         this.satID = satID;
     }
 
