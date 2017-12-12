@@ -33,7 +33,7 @@ import pns.kiam.Utils.FormatClassificator;
  * @author User
  */
 @Entity
-@Table(name = "File_measured")
+@Table(name = "file_measured")
 public class FileMeasured implements Serializable {
 
     private static final long serialVersionUID = 1L;
