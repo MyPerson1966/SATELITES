@@ -14,6 +14,7 @@ import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import javax.naming.NameNotFoundException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,6 +41,7 @@ public class FileMeasured implements Serializable {
 
     @Transient
     private FormatClassificator formatClassificator;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -63,10 +65,10 @@ public class FileMeasured implements Serializable {
     }
 
     public FileMeasured(int y, int m, int d, String c, String f, long mm) {
-        formatClassificator = new FormatClassificator();
         year = y;
         month = m;
         date = d;
+        content = c;
 
         try {
             strHash = pns.utils.strings.RStrings.strToHash(c, "MD5");
@@ -75,11 +77,40 @@ public class FileMeasured implements Serializable {
             Logger.getLogger(FileMeasured.class.getName()).log(Level.SEVERE, null, ex);
         }
         intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
-        content = c;
-        formatClassificator.classificate(c);
+
+        formatClassificator = new FormatClassificator();
+
         fileType = formatClassificator.getFormatType();
+
         fileName = f;
         uploadedMoment = mm;
+
+    }
+
+    public void setFields(int y, int m, int d, String c, String f, long mm) {
+        year = y;
+        month = m;
+        date = d;
+        content = c;
+
+//        strHash = pns.utils.strings.RStrings.strToHash(c);
+//        intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
+//        System.out.println(intHash + " strHash: " + strHash);
+        try {
+            strHash = pns.utils.strings.RStrings.strToHash(c, "MD5");
+            strHash = pns.utils.numbers.RConverter.toHex(strHash.getBytes());
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(FileMeasured.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
+        fileName = f;
+
+        uploadedMoment = mm;
+
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 
     public Long getId() {
@@ -145,6 +176,10 @@ public class FileMeasured implements Serializable {
 
     public void setUploadedMoment(long uploadedMoment) {
         this.uploadedMoment = uploadedMoment;
+    }
+
+    public String getFileType() {
+        return fileType;
     }
 
     @Override

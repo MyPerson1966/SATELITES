@@ -5,6 +5,7 @@
  */
 package pns.kiam.Utils;
 
+import javax.ejb.Stateless;
 import kiam.utils.parsers.AbstractParserString;
 import kiam.utils.parsers.ParserMPCString;
 import kiam.utils.parsers.ParserRESStrings;
@@ -17,6 +18,9 @@ import kiam.utils.parsers.ParserTCString;
 public class FormatClassificator {
 
     String formatType = "";
+
+    public FormatClassificator() {
+    }
 
     /**
      * Classificate the given String as one of RES, MPC or TC structure. Then
