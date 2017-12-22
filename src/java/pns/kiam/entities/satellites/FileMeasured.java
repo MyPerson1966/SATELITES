@@ -28,6 +28,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import pns.kiam.Utils.StringUtils;
 import pns.kiam.Utils.FormatClassificator;
+import pns.utils.numbers.HashMaker;
 
 /**
  *
@@ -42,6 +43,9 @@ public class FileMeasured implements Serializable {
     @Transient
     private FormatClassificator formatClassificator;
 
+    @Transient
+    private HashMaker hashMaker;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -53,15 +57,18 @@ public class FileMeasured implements Serializable {
     @Lob
     @Column(columnDefinition = "longtext")
     private String content = "";
+
     private String strHash = "";
     private String fileType = "";
 
     @Column(unique = true)
     private long intHash = 0;
+
     private String fileName = "";
     private long uploadedMoment = 0;  // moment of uploading file in local time
 
     public FileMeasured() {
+        hashMaker = new HashMaker();
     }
 
     public FileMeasured(int y, int m, int d, String c, String f, long mm) {
@@ -77,7 +84,7 @@ public class FileMeasured implements Serializable {
             Logger.getLogger(FileMeasured.class.getName()).log(Level.SEVERE, null, ex);
         }
         intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
-
+//        intHash = hashMaker.calcHash(c, 223092871, 5881, 2243);
         formatClassificator = new FormatClassificator();
 
         fileType = formatClassificator.getFormatType();
@@ -103,6 +110,7 @@ public class FileMeasured implements Serializable {
             Logger.getLogger(FileMeasured.class.getName()).log(Level.SEVERE, null, ex);
         }
         intHash = pns.utils.numbers.RConverter.toLong(strHash.getBytes());
+//        intHash = hashMaker.calcHash(c, 223092871, 5881, 2243);
         fileName = f;
 
         uploadedMoment = mm;
